@@ -80,3 +80,6 @@ research_paper_plaintext.txt
 # Research/Documentation (optional - uncomment if needed)
 # *.pdf
 # *.docx
+
+# Synopsis PDF
+AgriGenius/AgriVision Synopsis .pdf
