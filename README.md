@@ -1,43 +1,125 @@
+# 🌾 AgriGenius
 
-# 🌾 AgriVision  
-
-**AgriVision** is a Django-based AI-powered agriculture advisory platform that leverages **machine learning models, real-time APIs,** and **Gemini AI** to empower farmers and agricultural enthusiasts. It offers intelligent recommendations and insights through an easy-to-use web interface.
-
-## 🌟 Features  
-
-### 1. 🚜 Crop Recommendation 
-- Recommends the most suitable crops based on soil parameters such as nitrogen, phosphorus, potassium, pH, and temperature to optimize yield and sustainability.  
-
-### 2. 🌱 Fertilizer Recommendation 
-- Suggests the ideal fertilizers to improve soil health based on crop selection and soil data, enhancing nutrient levels and ensuring healthy crop growth while minimizing environmental impact.  
-
-### 3. ☁️ Weather Forecast  
-- Provides real-time weather information and forecasts using the **[Weather API]**(https://www.weatherapi.com/), helping farmers make timely decisions on irrigation, harvesting, and protecting crops from adverse weather conditions for next 3 days.
-
-### 4. 🧠 Farmer Chatbot
-- An intelligent chatbot powered by Gemini API that answers agriculture-related queries in real time. It helps farmers with guidance on best practices, soil management, weather, and more — all in a concise and context-aware manner.
-
-### 5. 📈 Crop Yield Prediction
-- Predicts expected crop yield based on inputs such as: state, district, season, crop and area. Uses a machine learning model trained on historical yield data to provide accurate yield estimations.
-- NOTE: Run the model to get .pkl file.
+> An AI-powered agricultural intelligence platform designed to assist farmers with smart crop recommendations, fertilizer suggestions, and yield predictions.
 
 ---
-## 🧰 Tech Stack
 
-| Layer        | Technologies Used                                         |
-|--------------|-----------------------------------------------------------|
-| **Backend**  | Django, Python, Machine Learning (scikit-learn, pandas)   |
-| **Frontend** | HTML, CSS, JavaScript, Tailwind CSS                       |
-| **APIs**     | WeatherAPI, Gemini API (for Chatbot)                      |
-| **ML Models**| Crop & Fertilizer Recommender, Yield Prediction           |
+## 📌 About AgriGenius
+
+**AgriGenius** is a Final Year Project (FYP) built to bridge the gap between modern AI capabilities and the agricultural sector. The system leverages machine learning models and a conversational AI chatbot to help farmers make data-driven decisions about crop selection, fertilizer usage, and expected crop yields — all through an intuitive web interface.
 
 ---
-## How to Get Your API Key for WeatherAPI  
 
-1. Go to [https://www.weatherapi.com/](https://www.weatherapi.com/).  
-2. Sign up for an account using your email or Google.  
-3. Log in and find your unique API key in the dashboard.  
-4. Replace the API key in `settings.py` under:  
-   WEATHER_API_KEY = "your_api_key_here"
-   
+## 🚀 Features
 
+- 🌱 **Crop Recommendation** — Suggests the most suitable crops based on soil and environmental parameters.
+- 🧪 **Fertilizer Recommendation** — Recommends optimal fertilizers based on soil nutrient levels and crop type.
+- 📈 **Crop Yield Prediction** — Predicts expected yield to help farmers plan production.
+- 🤖 **AI Chatbot** — A Gemini-powered chatbot that answers farming and agriculture-related queries.
+- 🖥️ **Modern Web Interface** — A Django-based web application with a clean and responsive UI.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer         | Technology                          |
+|---------------|--------------------------------------|
+| Backend       | Django (Python)                      |
+| ML Models     | scikit-learn (pkl files)             |
+| AI Chatbot    | Google Gemini API                    |
+| Frontend      | HTML, CSS, JavaScript                |
+| Data          | Custom agricultural datasets         |
+| Environment   | Python virtual environment (`.venv`) |
+
+---
+
+## 📁 Project Structure
+
+```
+AgriGenius/
+├── agri_genius/             # Django project root
+│   ├── agri_vision/         # Core Django app (settings, urls, wsgi)
+│   └── ...                  # Other Django apps
+├── DataSets/                # Training datasets
+├── figures/                 # Charts and figures
+├── Crop_Recommend.pkl       # Crop recommendation ML model
+├── Fertilizer_Recommend.pkl # Fertilizer recommendation ML model
+├── Crop_Yield.pkl           # Crop yield prediction ML model
+├── requirements.txt         # Python dependencies
+├── .env.example             # Environment variable template
+└── README.md                # Project documentation
+```
+
+---
+
+## ⚙️ Setup & Installation
+
+### Prerequisites
+- Python 3.10+
+- pip
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Prashant615/AgriGenius.git
+cd AgriGenius
+```
+
+### 2. Create a Virtual Environment
+```bash
+python -m venv .venv
+.venv\Scripts\activate   # On Windows
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Copy the `.env.example` file to `.env` and fill in the required values:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
+```
+SECRET_KEY=your_django_secret_key
+GEMINI_API_KEY=your_google_gemini_api_key
+DEBUG=True
+```
+
+### 5. Apply Migrations
+```bash
+python agri_genius/manage.py migrate
+```
+
+### 6. Run the Development Server
+```bash
+python agri_genius/manage.py runserver
+```
+
+Visit `http://127.0.0.1:8000` in your browser.
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request.
+
+---
+
+## 📄 License
+
+This project is developed as an academic Final Year Project. All rights reserved.
+
+---
+
+## 👨‍💻 Authors
+
+- **AgriGenius Team** — Final Year Project, Department of Computer Science
+
+---
+
+> *"Empowering farmers with the intelligence they deserve."* 🌿
