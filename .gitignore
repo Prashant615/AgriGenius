@@ -83,3 +83,7 @@ research_paper_plaintext.txt
 
 # Synopsis PDF
 AgriGenius/AgriVision Synopsis .pdf
+
+# Local environment variables
+.env
+AgriGenius/.env
