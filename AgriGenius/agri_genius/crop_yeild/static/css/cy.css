@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.09rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+header {
+    text-align: center;
+    padding: 20px 60px;
+    padding-bottom: 0px;
+    color: white;
+}
+
+header h1 {
+    font-size: 1.9rem;
+    padding-top: 40px;
+    color: black;
+}
+
+header p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+
+li {
+    position: relative;
+}
+
+.main-content {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.main-content .container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #F7F7F7;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.main-content h1 {
+    font-size: 1.9rem;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    color: black;
+}
+
+.main-content p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: black;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+form button:hover {
+    background: #3d9140;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+}
+
+/* Styles for the "Our Services" dropdown */
+li {
+    position: relative;
+}
+
+/* Dropdown Styling */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1px 0;
+    list-style: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+li:hover .dropdown {
+    display: block;
+    width: 220px;
+}
+
+.dropdown li a {
+    padding:3px;
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 0.95rem;
+    transition: background 0.3s ease-in-out;
+}
+
+.dropdown li a:hover {
+    background: rgba(0, 123, 255, 0.1);
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            background-color: #98D8EF;
+            background-image: url("{% static 'images/ourservices.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/ourservices.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <nav class="abc">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <a href="#" class="text-2xl font-bold">AgriGenius</a>
+            <ul class="flex space-x-10 text-lg">
+                <li><a href="/index" class="font-bold">Homepage</a></li>
+                <li><a href="/index/about" class="font-bold "">About Us</a></li>
+                <li><a href="/index/service" class="font-bold text-black">Our Services</a></li>
+                <li><a href="/index/contact" class="font-bold">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav> -->
+    <header>
+        <nav>
+            <div class="logo">AgriGenius</div>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li><a href="/index/about">About Us</a></li>
+                <li><a href="/index/service">Our Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <p class="heading">Our Services</p>
+        <div class="services">
+            <div class="service">
+                <img src="https://media.istockphoto.com/id/1756408312/photo/focusing-on-a-sunflower-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=mcMPYuDfE9HGBLn1fyfLobrnnUyVyx9RIA_3Ibkbrp8="
+                    alt="Crop Recommendation">
+                <h3>Crop Recommendation</h3>
+                <p>Get tailored suggestions for the best crops to grow based on your soil and climate conditions.</p>
+                <a href="/recommend-crop/">Learn More</a>
+            </div>
+            <div class="service">
+                <img src="https://media.istockphoto.com/id/1385680850/photo/protection-of-crops-from-pests-and-diseases-pesticide-bottle-at-agriculture-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=HpDN1wCJXHq0vuD0Hnrj76rREXPKEPIy_h5nTBdCsmA="
+                    alt="Fertilizer Recommendation">
+                <h3>Fertilizer Recommendation</h3>
+                <p>Find out the right fertilizers to enhance your soil health and maximize yield.</p>
+                <a href="/recommend-fertilizer/">Learn More</a>
+            </div>
+            <div class="service">
+                <img src="https://images.unsplash.com/photo-1561553873-e8491a564fd0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHdlYXRoZXJ8ZW58MHx8MHx8fDA%3D"
+                    alt="Weather Forecast">
+                <h3>Weather Forecast</h3>
+                <p>Plan your farming activities with accurate and up-to-date weather forecasts.</p>
+                <a href="/rainfall/">Learn More</a>
+            </div>
+            <div class="service">
+                <img src="https://images.unsplash.com/photo-1534940519139-f860fb3c6e38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNyb3AlMjB5ZWlsZCUyMHByZWRpY3R8ZW58MHx8MHx8fDA%3D"
+                    alt="Crop Yield Prediction">
+                <h3>Crop Yield Prediction</h3>
+                <p>Predict the yield of your crops and optimize your agricultural practices to yield more.</p>
+                <a href="/crop-yield/">Learn More</a>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-gray-400 text-center py-4">
+        <p>&copy; 2026 <span class="text-green-400 font-semibold">AgriGenius</span>. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

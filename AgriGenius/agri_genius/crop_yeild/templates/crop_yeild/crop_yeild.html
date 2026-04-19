@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cy.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- jQuery and jQuery UI CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <style>
+        body {
+            background-color: #98D8EF;
+            background-image: url("{% static 'images/cy.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+            border-color: #22c55e;
+            outline: none;
+        }
+
+        input:out-of-range {
+            border: 2px solid #ef4444 !important;
+            background-color: #fee2e2;
+        }
+
+        .range-tooltip {
+            position: absolute;
+            right: 12px;
+            top: 40px;
+            font-size: 0.75rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 999px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(5px);
+            font-weight: 600;
+            border: 1px solid #cbd5e1;
+        }
+
+        .input-group input:focus + .range-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .input-group input:out-of-range + .range-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+            color: #ef4444;
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <na            <div class="logo">AgriGenius</div>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li><a href="/index/about">About Us</a></li>
+                <li>
+                    <a href="/index/service/">Our Services</a>
+                    <ul class="dropdown">
+                        <li><a href="/recommend-crop/">Crop Recommendation</a></li>
+                        <li><a href="/rainfall/">Weather Forecast</a></li>
+                        <li><a href="/recommend-fertilizer/">Fertilizer Recommendation</a></li>
+                    </ul>
+                </li>
+                <li><a href="/index/contact/">Contact Us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <div class="main-content">
+        <h1>Crop Yeild Prediction</h1>
+        <p>Achieve optimal harvests by selecting crops perfectly aligned with your soil type and weather conditions.
+            Boost efficiency and yield with smart suggestions</p>
+        <div class="container">
+            <h3>Enter the values to get results </h3>
+            <form id="fertiForm" method="POST" action="/crop-yield/">
+                {% csrf_token %}
+
+                <!-- State Name -->
+                <div class="input-group">
+                    <label for="state_name">State Name:</label>
+                    <input type="text" id="state_name" name="state_name" placeholder="Start typing state..." required>
+                </div>
+
+                <!-- District Name -->
+                <div class="input-group">
+                    <label for="district_name">District Name:</label>
+                    <input type="text" id="district_name" name="district_name" placeholder="Start typing district..." required>
+                </div>
+
+                <!-- Crop Year -->
+                <div class="input-group">
+                    <label for="crop_year">Crop Year:</label>
+                    <input type="number" id="crop_year" name="crop_year" min="1997" max="2015" placeholder="Enter year" required>
+                    <div class="range-tooltip">Range: 1997 - 2015</div>
+                </div>
+
+                <!-- Season -->
+                <div class="input-group">
+                    <label for="season">Season:</label>
+                    <select name="season" id="season" required>
+                        <option value=0>Autumn</option>
+                        <option value=1>Kharif</option>
+                        <option value=2>Rabi</option>
+                        <option value=3>Summer</option>
+                        <option value=4>Whole Year</option>
+                        <option value=5>Winter</option>
+                    </select>
+                </div>
+
+                <!-- Crop -->
+                <div class="input-group">
+                    <label for="crop">Crop:</label>
+                    <input type="text" id="crop" name="crop" placeholder="Start typing crop..." required>
+                </div>
+
+                <!-- Area -->
+                <div class="input-group">
+                    <label for="area">Area (in hectares):</label>
+                    <input type="number" id="area" name="area" step="0.01" min="0.01" placeholder="Enter area" required>
+                    <div class="range-tooltip">Min: 0.01</div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="button" id="submitButton" class="mt-4">Recommend Yield</button>
+            </form>
+
+
+            <div class="result" id="result"></div>
+        </div>
+
+    </div>
+    <footer class="bg-gray-900 text-gray-400 text-center py-4">
+        <p>&copy; 2026 <span class="text-green-400 font-semibold">AgriGenius</span>. All rights reserved.</p>
+    </footer>
+
+
+    <script src="{% static 'js/cy.js' %}"></script>
+</body>
+
+</html>

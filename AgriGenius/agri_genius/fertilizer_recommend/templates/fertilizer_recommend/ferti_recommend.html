@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/fr.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #98D8EF;
+            background-image: url("{% static 'images/fr.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+            border-color: #22c55e;
+            outline: none;
+        }
+
+        input:out-of-range {
+            border: 2px solid #ef4444 !important;
+            background-color: #fee2e2;
+        }
+
+        .range-tooltip {
+            position: absolute;
+            right: 12px;
+            top: 40px;
+            font-size: 0.75rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 999px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(5px);
+            font-weight: 600;
+            border: 1px solid #cbd5e1;
+        }
+
+        .input-group input:focus + .range-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .input-group input:out-of-range + .range-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+            color: #ef4444;
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">AgriGenius</div>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li><a href="#">About Us</a></li>
+                <li>
+                    <a href="/index/service/">Our Services</a>
+                    <ul class="dropdown">
+                        <li><a href="/recommend-crop/">Crop Recommendation</a></li>
+                        <li><a href="/rainfall/">Weather Forecast</a></li>
+                        <li><a href="/crop-yield/">Crop Yield</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-content">
+        <h1>Fertilizer Recommendation</h1>
+        <p>Achieve optimal harvests by selecting crops perfectly aligned with your soil type and weather conditions.
+            Boost efficiency and yield with smart suggestions</p>
+        <div class="container">
+            <h3>Enter the values to get results </h3>
+            <form id="fertiForm" method="POST" action="/recommend-fertilizer/">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="temperature">Temperature (°C):</label>
+                    <input type="number" step="any" name="temperature" min="0" max="38" required>
+                    <div class="range-tooltip">Range: 0 - 38</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="humidity">Humidity (%):</label>
+                    <input type="number" step="any" name="humidity" min="50" max="95" required>
+                    <div class="range-tooltip">Range: 50 - 95</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="moisture">Moisture (%):</label>
+                    <input type="number" step="any" name="moisture" min="25" max="65" required>
+                    <div class="range-tooltip">Range: 25 - 65</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="nitrogen">Nitrogen (N):</label>
+                    <input type="number" step="any" name="nitrogen" min="0" max="126" required>
+                    <div class="range-tooltip">Range: 0 - 126</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="potassium">Potassium (K):</label>
+                    <input type="number" step="any" name="potassium" min="0" max="59" required>
+                    <div class="range-tooltip">Range: 0 - 59</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="phosphorous">Phosphorous (P):</label>
+                    <input type="number" step="any" name="phosphorous" min="0" max="54" required>
+                    <div class="range-tooltip">Range: 0 - 54</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="soil_type">Soil Type:</label>
+                    <select name="soil_type" required>
+                        <option value=0>Black</option>
+                        <option value=1>Clayey</option>
+                        <option value=2>Loamy</option>
+                        <option value=3>Red</option>
+                        <option value=4>Sandy</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="crop_type">Crop Type:</label>
+                    <select name="crop_type" required>
+                        <option value=0>Barley</option>
+                        <option value=1>Cotton</option>
+                        <option value=2>Ground Nuts</option>
+                        <option value=3>Maize</option>
+                        <option value=4>Millets</option>
+                        <option value=5>Oil seeds</option>
+                        <option value=6>Paddy</option>
+                        <option value=7>Pulses</option>
+                        <option value=8>Sugarcane</option>
+                        <option value=9>Tobacco</option>
+                        <option value=10>Wheat</option>
+                        <option value=11>Coffee</option>
+                        <option value=12>Kidney Beans</option>
+                        <option value=13>Orange</option>
+                        <option value=14>Pomegranate</option>
+                        <option value=15>Rice</option>
+                        <option value=16>Watermelon</option>
+                    </select>
+                </div>
+
+                <button type="button" id="submitButton" class="mt-4">Recommend Fertilizer</button>
+            </form>
+            <div class="result" id="result"></div>
+        </div>
+
+    </div>
+    <footer class="bg-gray-900 text-gray-400 text-center py-4">
+        <p>&copy; 2026 <span class="text-green-400 font-semibold">AgriGenius</span>. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/fr.js' %}"></script>
+</body>
+
+</html>

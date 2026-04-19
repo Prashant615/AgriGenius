@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/rainfall.css' %}">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #98D8EF;
+            background-image: url("{% static 'images/wf.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">AgriGenius</div>
+            <ul>
+                <li><a href="/index">Homepage</a></li>
+                <li><a href="/index/about/">About Us</a></li>
+                <li>
+                    <a href="/index/service/">Our Services</a>
+                    <ul class="dropdown">
+                        <li><a href="/recommend-crop/">Crop Recommendation</a></li>
+                        <li><a href="/recommend-fertilizer/">Fertilizer Recommendation</a></li>
+                        <li><a href="/crop-yield">Crop Yield</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <p>Achieve optimal harvests by selecting crops perfectly aligned with your soil type and weather conditions. Boost efficiency and yield with smart suggestions</p>
+        <!-- Form -->
+        <form method="POST" action="{% url 'weather_forecast' %}">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name" required pattern="[A-Za-z\s]+" 
+                   title="City name should only contain letters" aria-label="Enter city name" style="margin-bottom: 10px;">
+            <button type="submit" aria-label="Get Weather">Get Weather</button>
+        </form>
+
+        <!-- Loader -->
+        <div id="loader" style="display: none;">Loading...</div>
+
+        <!-- Weather Result -->
+        {% if weather_data %}
+        <div class="weather-result">
+            <h2>Current Weather: {{ weather_data.current.city }}, {{ weather_data.current.region }}</h2>
+            <p>Temperature: {{ weather_data.current.temperature }}°C</p>
+            <p>Condition: {{ weather_data.current.condition }}</p>
+            <img src="https:{{ weather_data.current.icon }}" alt="{{ weather_data.current.condition }}" style="margin: auto;">
+        </div>
+
+        <!-- 3-Day Forecast -->
+        <div class="forecast">
+            <h2>3-Day Forecast</h2>
+            <ul>
+                {% for day in weather_data.forecast %}
+                <li>
+                    <h3>{{ day.date }}</h3>
+                    <p>Max Temp: {{ day.max_temp }}°C</p>
+                    <p>Min Temp: {{ day.min_temp }}°C</p>
+                    <p>Condition: {{ day.condition }}</p>
+                    <img src="https:{{ day.icon }}" alt="{{ day.condition }}" style="margin: auto;">
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% elif error %}
+        <!-- Error Message -->
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <!-- <footer class="bg-gray-900 text-gray-400 text-center py-4">
+        <p>&copy; 2026 <span class="text-green-400 font-semibold">AgriGenius</span>. All rights reserved.</p>
+    </footer> -->
+    <script>
+        const form = document.querySelector('form');
+        const loader = document.getElementById('loader');
+        form.addEventListener('submit', () => {
+            loader.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+

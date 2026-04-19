@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Chatbot</title>
+</head>
+
+<body>
+    <h1>Agriculture Chatbot</h1>
+    <div>
+        <label for="query">Enter your question:</label>
+        <input type="text" id="query" placeholder="Type your question here" required>
+        <br>
+        <button id="askButton">Ask</button>
+    </div>
+    <hr>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('askButton').addEventListener('click', function() {
+            const query = document.getElementById('query').value;
+            if (!query) {
+                alert('Please enter a question.');
+                return;
+            }
+            fetch('/chatbot/query/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerHTML = '<strong>Bot:</strong> ' + data.response;
+            })
+            .catch(error => {
+                document.getElementById('response').innerHTML = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+
+</html>
